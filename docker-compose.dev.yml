@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "80:5173"  # Map container's 5173 to host's 80
+    volumes:
+      - .:/app
+      - /app/node_modules  # Prevents local node_modules from mounting
+    environment:
+      - NODE_ENV=development
+    networks:
+      app_net:
+        aliases:
+          - myreactapp
+
+networks:
+  app_net:
+    name: app_network

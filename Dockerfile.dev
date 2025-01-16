@@ -1,0 +1,20 @@
+# Use Node image for development
+FROM node:23-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package.json package-lock.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Set host to allow external connections
+ENV VITE_HOST=0.0.0.0
+
+# Expose Vite's port
+EXPOSE 5173
+
+# Start development server
+CMD ["npm", "run", "dev", "--", "--host"]

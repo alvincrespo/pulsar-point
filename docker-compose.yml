@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    ports:
+      - "80:80"
+    networks:
+      app_net:
+        aliases:
+          - myreactapp
+
+networks:
+  app_net:
+    name: app_network
